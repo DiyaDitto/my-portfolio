@@ -1,12 +1,17 @@
 const express = require("express");
 const cors = require("cors");
 const rateLimit = require("express-rate-limit");
-
+const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({ origin: ["http://localhost:3000", "http://localhost:5173"] }));
 app.use(express.json());
+
+app.use(
+  "/certificates",
+  express.static(path.join(__dirname, "public/certificates"))
+);
 
 const contactLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -40,8 +45,8 @@ const data = {
   skills: [
     { label: "Languages", tags: ["Python", "C/C++", "JavaScript", "Java", "SQL"] },
     { label: "Frontend",  tags: ["React", "HTML/CSS", "Tailwind", "Figma"] },
-    { label: "Backend",   tags: ["Node.js", "Express", "FastAPI", "PostgreSQL", "MongoDB"] },
-    { label: "Tools & Infra", tags: ["Git", "Docker", "Linux", "AWS", "GitHub Actions", "Vercel"] },
+    { label: "Backend",   tags: ["Node.js", "Express", "FastAPI", "MongoDB"] },
+    { label: "Tools & Infra", tags: ["Git", "Linux",  "GitHub Actions", "Vercel"] },
   ],
 
   projects: [
@@ -77,32 +82,31 @@ const data = {
 
   education: {
     degree: "B.Tech Computer Science & Engineering",
-    school: "Diya Ditto College of Engineering, Chengannur",
+    school: "College of Engineering, Chengannur",
     cgpa: "8.4 / 10",
     relevant: "OS, Networks, DBMS, Algorithms, Data Structures",
     years: "2022 – 2026",
   },
   certifications: [
-    {
-      name: "Python for Everybody",
-      issuer: "Coursera — University of Michigan",
-      date: "2024",
-      link: "https://coursera.org",
-    },
-    {
-      name: "The Web Developer Bootcamp",
-      issuer: "Udemy",
-      date: "2023",
-      link: "https://udemy.com",
-    },
-    {
-      name: "AWS Cloud Practitioner Essentials",
-      issuer: "Amazon Web Services",
-      date: "2024",
-      link: "https://aws.amazon.com",
-    },
-  ],
-
+  {
+    name: "WE Start Pre-Incubation Program",
+    issuer: "Kerala Startup Mission",
+    date: "2024",
+    link: "/certificates/westart.png",
+  },
+  {
+    name: "Python Foundation Certification",
+    issuer: "Infosys Springboard",
+    date: "2025",
+    link: "public/certificates/pythoninfy.png",
+  },
+  {
+    name: "React Developer Certification",
+    issuer: "Great Learning",
+    date: "2024",
+    link: "/certificates/reactgl.png",
+  },
+],
   contact: {
     email: "diyaditto84@gmail.com",
     github: "github.com/DiyaDitto",
