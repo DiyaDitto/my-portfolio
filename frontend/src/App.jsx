@@ -14,7 +14,7 @@ import Footer        from "./components/Footer";
 import BackToTop from "./components/BackToTop";
 import Certifications from "./components/Certifications";
 import Experience from "./components/Experience";
-import GitHubGraph from "./components/GitHubGraph";
+import GithubGraph from "./components/GithubGraph";
 import { useLenis } from "./hooks/useLenis";
 function LoadingScreen() {
   return (
