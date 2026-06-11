@@ -13,7 +13,7 @@ function useTypingEffect(lines) {
 
   useEffect(() => {
     if (done) return;
-    if (lineIndex >= lines.length) { setDone(true); return; }
+    if (lineIndex >= lines.length) {setDone(true); return; }
     if (charIndex <= lines[lineIndex].length) {
       const t = setTimeout(() => {
         setDisplayed((prev) => {

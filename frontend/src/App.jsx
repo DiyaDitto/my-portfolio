@@ -1,3 +1,5 @@
+console.log(import.meta.env);
+console.log(import.meta.env.VITE_API_URL);
 import { useState } from "react";
 import { usePortfolio } from "./hooks/usePortfolio";
 import PageLoader    from "./components/PageLoader";
@@ -16,6 +18,7 @@ import Certifications from "./components/Certifications";
 import Experience from "./components/Experience";
 import GithubGraph from "./components/GithubGraph";
 import { useLenis } from "./hooks/useLenis";
+
 function LoadingScreen() {
   return (
     <div style={{

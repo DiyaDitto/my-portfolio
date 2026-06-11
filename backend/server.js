@@ -5,7 +5,15 @@ const path = require("path");
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "https://my-portfolio-psi-black-69.vercel.app",
+  ],
+  methods: ["GET", "POST"],
+  credentials: true,
+}));
 
 app.use(express.json());
 
@@ -122,7 +130,7 @@ const data = {
     name: "Python Foundation Certification",
     issuer: "Infosys Springboard",
     date: "2025",
-    link: "public/certificates/pythoninfy.png",
+    link: "/certificates/pythoninfy.png",
   },
   {
     name: "React Developer Certification",
