@@ -1,5 +1,6 @@
 import SectionHeader from "./SectionHeader";
 import { useReveal } from "../hooks/useReveal";
+import { useTilt }   from "../hooks/useTilt";
 
 const GithubIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -15,31 +16,39 @@ const LinkIcon = () => (
   </svg>
 );
 
-function ProjectCard({ project }) {
-  const ref = useReveal();
+function ProjectCard({ project, index }) {
+  const revealRef = useReveal(index * 100, "left");
+  const tiltRef   = useTilt(6);
+
   return (
-    <div className="project-card reveal" ref={ref}>
-      <div>
-        <div className="project-num">{project.num}</div>
-        <div className="project-name">{project.name}</div>
-        <p className="project-desc">{project.description}</p>
-        <div className="project-tech">
-          {project.tech.map((t) => (
-            <span className="tag" key={t}>{t}</span>
-          ))}
+    <div ref={revealRef}>
+      <div
+        ref={tiltRef}
+        className="project-card"
+        style={{ borderRadius: "8px" }}
+      >
+        <div>
+          <div className="project-num">{project.num}</div>
+          <div className="project-name">{project.name}</div>
+          <p className="project-desc">{project.description}</p>
+          <div className="project-tech">
+            {project.tech.map((t) => (
+              <span className="tag" key={t}>{t}</span>
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="project-links">
-        {project.github && (
-          <a href={project.github} target="_blank" rel="noreferrer" className="project-link">
-            <GithubIcon /> GitHub
-          </a>
-        )}
-        {project.demo && (
-          <a href={project.demo} target="_blank" rel="noreferrer" className="project-link">
-            <LinkIcon /> Live Demo
-          </a>
-        )}
+        <div className="project-links">
+          {project.github && (
+            <a href={project.github} target="_blank" rel="noreferrer" className="project-link">
+              <GithubIcon /> GitHub
+            </a>
+          )}
+          {project.demo && (
+            <a href={project.demo} target="_blank" rel="noreferrer" className="project-link">
+              <LinkIcon /> Live Demo
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -51,8 +60,8 @@ export default function Projects({ projects }) {
     <section id="projects">
       <SectionHeader num="03" title="Projects" />
       <div className="projects-list">
-        {projects.map((p) => (
-          <ProjectCard key={p.num} project={p} />
+        {projects.map((p, i) => (
+          <ProjectCard key={p.num} project={p} index={i} />
         ))}
       </div>
     </section>

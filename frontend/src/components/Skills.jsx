@@ -2,7 +2,7 @@ import SectionHeader from "./SectionHeader";
 import { useReveal } from "../hooks/useReveal";
 
 export default function Skills({ skills }) {
-  const ref = useReveal();
+  const ref = useReveal(0, "up");
   if (!skills) return null;
 
   return (

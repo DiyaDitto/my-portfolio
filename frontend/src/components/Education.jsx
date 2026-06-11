@@ -2,7 +2,7 @@ import SectionHeader from "./SectionHeader";
 import { useReveal } from "../hooks/useReveal";
 
 export default function Education({ education }) {
-  const ref = useReveal();
+const ref = useReveal(0, "up");;
   if (!education) return null;
   const { degree, school, cgpa, relevant, years } = education;
 

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTheme } from "../hooks/useTheme";
 
 const links = ["about", "skills", "projects", "education", "contact"];
 
@@ -6,6 +7,7 @@ export default function NavBar({ name }) {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
+  const { theme, toggle } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,7 +26,6 @@ export default function NavBar({ name }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lock body scroll when menu is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -41,8 +42,8 @@ export default function NavBar({ name }) {
         <ul className="nav-links">
           {links.map((l) => (
             <li key={l}>
-              <a
-                href={`#${l}`}
+              
+            <a    href={`#${l}`}
                 style={{
                   color: active === l ? "var(--accent)" : "",
                   transition: "color 0.2s",
@@ -54,26 +55,56 @@ export default function NavBar({ name }) {
           ))}
         </ul>
 
-        {/* Hamburger button — mobile only */}
-        <button
-          className="hamburger"
-          onClick={() => setMenuOpen((o) => !o)}
-          aria-label="Toggle menu"
-        >
-          <span style={{ background: menuOpen ? "transparent" : "var(--text)" }} />
-          <span style={{
-            background: "var(--text)",
-            transform: menuOpen ? "rotate(45deg) translate(5px, 5px)" : "none",
-          }} />
-          <span style={{
-            background: "var(--text)",
-            transform: menuOpen ? "rotate(-45deg) translate(5px, -5px)" : "none",
-            opacity: menuOpen ? 1 : 1,
-          }} />
-        </button>
+        <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+          {/* Theme toggle */}
+          <button
+            onClick={toggle}
+            title="Toggle theme"
+            style={{
+              background: "none",
+              border: "1px solid var(--border)",
+              borderRadius: "4px",
+              color: "#6ee7b7",
+              cursor: "pointer",
+              padding: "0.4rem 0.6rem",
+              fontSize: "0.9rem",
+              transition: "all 0.2s",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = "var(--accent)";
+              e.currentTarget.style.color = "var(--accent)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = "var(--border)";
+              e.currentTarget.style.color = "var(--muted)";
+            }}
+          >
+            {theme === "dark" ? "☀︎" : "☾"}
+          </button>
+
+          {/* Hamburger */}
+          <button
+            className="hamburger"
+            onClick={() => setMenuOpen((o) => !o)}
+            aria-label="Toggle menu"
+          >
+            <span style={{ background: menuOpen ? "transparent" : "var(--text)" }} />
+            <span style={{
+              background: "var(--text)",
+              transform: menuOpen ? "rotate(45deg) translate(5px, 5px)" : "none",
+            }} />
+            <span style={{
+              background: "var(--text)",
+              transform: menuOpen ? "rotate(-45deg) translate(5px, -5px)" : "none",
+            }} />
+          </button>
+        </div>
       </nav>
 
-      {/* Mobile overlay menu */}
+      {/* Mobile menu */}
       <div
         className="mobile-menu"
         style={{
@@ -85,8 +116,8 @@ export default function NavBar({ name }) {
         <ul>
           {links.map((l) => (
             <li key={l}>
-              <a
-                href={`#${l}`}
+              
+            <a    href={`#${l}`}
                 onClick={() => setMenuOpen(false)}
                 style={{
                   color: active === l ? "var(--accent)" : "var(--text)",

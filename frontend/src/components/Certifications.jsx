@@ -2,14 +2,14 @@ import SectionHeader from "./SectionHeader";
 import { useReveal } from "../hooks/useReveal";
 
 function CertCard({ cert, index }) {
-  const ref = useReveal(index * 100);
+// In CertCard:
+const ref = useReveal(index * 100, "right");
   return (
     <div
       ref={ref}
-      className="reveal"
+      className="reveal cert-card"
       style={{
-        background: "var(--surface)",
-        border: "1px solid var(--border)",
+        
         borderRadius: "8px",
         padding: "1.5rem 1.75rem",
         display: "flex",
@@ -18,14 +18,15 @@ function CertCard({ cert, index }) {
         gap: "1rem",
         transition: "background 0.2s, border-color 0.2s",
       }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.background = "#1c1f24";
-        e.currentTarget.style.borderColor = "var(--border)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.background = "var(--surface)";
-        e.currentTarget.style.borderColor = "var(--border)";
-      }}
+    onMouseEnter={(e) => {
+ e.currentTarget.style.transform =
+   "translateY(-2px)";
+}}
+
+onMouseLeave={(e) => {
+ e.currentTarget.style.transform =
+   "translateY(0)";
+}}
     >
       <div>
         <div style={{
@@ -97,7 +98,7 @@ export default function Certifications({ certifications }) {
 
   return (
     <section id="certifications" style={{ borderTop: "1px solid var(--border)", padding: "6rem 4rem" }}>
-      <SectionHeader num="05" title="Certifications" />
+      <SectionHeader num="06" title="Certifications" />
       <div
         ref={ref}
         style={{

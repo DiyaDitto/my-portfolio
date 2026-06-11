@@ -28,8 +28,8 @@ const LinkedInIcon = () => (
 );
 
 export default function Contact({ contact }) {
-  const r1 = useReveal();
-  const r2 = useReveal();
+const r1 = useReveal(0,   "left");
+const r2 = useReveal(100, "right");
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState("idle");
   const [serverMsg, setServerMsg] = useState("");
@@ -66,7 +66,7 @@ export default function Contact({ contact }) {
 
   return (
     <section id="contact">
-      <SectionHeader num="06" title="Contact" />
+      <SectionHeader num="08" title="Contact" />
       <div className="contact-inner">
         <div>
           <div className="contact-text reveal" ref={r1}>

@@ -12,7 +12,7 @@
   --sans: 'Sora', sans-serif;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: auto; }
 
 body {
   background: var(--bg);
@@ -55,12 +55,7 @@ body::before {
 .fade-3 { opacity: 0; animation: fadeUp 0.8s ease forwards 0.7s; }
 .fade-4 { opacity: 0; animation: fadeUp 0.8s ease forwards 0.9s; }
 
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.reveal.visible { opacity: 1; transform: none; }
+
 
 .spinner {
   width: 40px; height: 40px;
@@ -78,7 +73,7 @@ nav {
   display: flex; align-items: center; justify-content: space-between;
   padding: 1.25rem 4rem;
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px solid var(--border);;
   transition: border-color 0.3s;
 }
 nav.scrolled { border-color: var(--border); }
@@ -497,4 +492,63 @@ footer {
 .edu-card:hover {
   border-color: rgba(110, 231, 183, 0.2) !important;
   transform: translateY(-2px);
+}
+/* Light mode */
+body.light {
+  --bg: #f5f5f0;
+  --surface: #ebebeb;
+  --border: #d4d4d0;
+  --accent: #059669;
+  --accent2: #0284c7;
+  --text: #1a1a1a;
+  --muted: #555550;
+    background: var(--bg);
+  color: var(--text);
+}
+
+
+body.light .project-card,
+body.light .skill-group,
+body.light .stat-box,
+body.light .edu-card {
+  background: rgba(235, 235, 235, 0.8) !important;
+  border-color: rgba(0,0,0,0.08) !important;
+}
+
+body.light .project-card:hover,
+body.light .skill-group:hover,
+body.light .stat-box:hover,
+body.light .edu-card:hover {
+  background: rgba(220, 220, 220, 0.95) !important;
+}
+
+body.light nav {
+  background: rgba(245, 245, 240, 0.88);
+}
+
+body.light .mobile-menu {
+  background: #ebebeb;
+}
+
+body.light .btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+.cert-card{
+ background:var(--surface);
+ border:1px solid var(--border);
+ color:var(--text);
+
+ transition:.3s;
+}
+
+.cert-card h3,
+.cert-card p,
+.cert-card span{
+ color:inherit;
+}
+body.light .cert-card{
+ background:#ffffff;
+ color:#111827;
+ border-color:#d1d5db;
 }

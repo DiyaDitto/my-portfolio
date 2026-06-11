@@ -1,25 +1,61 @@
-import SectionHeader from "./SectionHeader";
-import { useReveal } from "../hooks/useReveal";
+import SectionHeader     from "./SectionHeader";
+import { useReveal }     from "../hooks/useReveal";
+import { useCounter }    from "../hooks/useCounter";
+import { useInView }     from "../hooks/useInView";
+
+function StatBox({ num, label }) {
+  const { ref, inView } = useInView(0.5);
+
+  const isInfinity = num === "∞";
+
+  const count = isInfinity
+    ? "∞"
+    : useCounter(String(num), inView);
+
+  return (
+    <div className="stat-box" ref={ref}>
+      <div
+        className="stat-num"
+        style={{
+          fontSize: isInfinity
+            ? "2.6rem"
+            : undefined,
+
+          fontWeight: isInfinity
+            ? 700
+            : undefined,
+        }}
+      >
+        {count}
+      </div>
+
+      <div className="stat-label">
+        {label}
+      </div>
+    </div>
+  );
+}
 
 export default function About({ about }) {
-  const r1 = useReveal();
-  const r2 = useReveal();
-  const r3 = useReveal();
+  const r1 = useReveal(0,   "left");
+  const r2 = useReveal(100, "up");
+  const r3 = useReveal(200, "right");
   if (!about) return null;
 
   return (
     <section id="about">
       <SectionHeader num="01" title="About" />
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "auto 1fr 1fr",
-        gap: "3.5rem",
-        alignItems: "start",
-      }}
-      className="about-grid-full"
+      <div
+        className="about-grid-full"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "auto 1fr 1fr",
+          gap: "3.5rem",
+          alignItems: "start",
+        }}
       >
         {/* Photo */}
-        <div ref={r1} className="reveal" style={{ width: "180px" }}>
+        <div ref={r1} style={{ width: "180px" }}>
           <div style={{
             width: "180px",
             height: "220px",
@@ -41,7 +77,6 @@ export default function About({ about }) {
               onMouseEnter={(e) => e.target.style.filter = "grayscale(0%)"}
               onMouseLeave={(e) => e.target.style.filter = "grayscale(20%)"}
             />
-            {/* Accent corner */}
             <div style={{
               position: "absolute",
               bottom: 0, right: 0,
@@ -50,7 +85,6 @@ export default function About({ about }) {
               opacity: 0.15,
             }} />
           </div>
-          {/* Name tag below photo */}
           <div style={{
             marginTop: "0.75rem",
             fontFamily: "var(--mono)",
@@ -64,19 +98,16 @@ export default function About({ about }) {
         </div>
 
         {/* Text */}
-        <div className="about-text reveal" ref={r2}>
+        <div className="about-text" ref={r2}>
           {about.paragraphs.map((p, i) => (
             <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
           ))}
         </div>
 
-        {/* Stats */}
-        <div className="about-stats reveal" ref={r3}>
+        {/* Stats with counter */}
+        <div className="about-stats" ref={r3}>
           {about.stats.map((s) => (
-            <div className="stat-box" key={s.label}>
-              <div className="stat-num">{s.num}</div>
-              <div className="stat-label">{s.label}</div>
-            </div>
+            <StatBox key={s.label} num={s.num} label={s.label} />
           ))}
         </div>
       </div>

@@ -13,7 +13,9 @@ import Contact       from "./components/Contact";
 import Footer        from "./components/Footer";
 import BackToTop from "./components/BackToTop";
 import Certifications from "./components/Certifications";
-
+import Experience from "./components/Experience";
+import GitHubGraph from "./components/GitHubGraph";
+import { useLenis } from "./hooks/useLenis";
 function LoadingScreen() {
   return (
     <div style={{
@@ -60,7 +62,7 @@ function ErrorScreen() {
 export default function App() {
   const { data, loading, error } = usePortfolio();
   const [loaderDone, setLoaderDone] = useState(false);
-
+  useLenis();
   if (loading) return <LoadingScreen />;
   if (error)   return <ErrorScreen />;
 
@@ -75,7 +77,9 @@ export default function App() {
       <Skills    skills={data.skills} />
       <Projects  projects={data.projects} />
       <Education education={data.education} />
+       <Experience     experience={data.experience} />
       <Certifications certifications={data.certifications} />
+      <GitHubGraph    username="DiyaDitto" />
       <Contact       contact={data.contact} />
       <Footer    name={data.hero.name} />
       <BackToTop />

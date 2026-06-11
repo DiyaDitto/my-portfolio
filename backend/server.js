@@ -38,7 +38,11 @@ const data = {
       { num: "4+", label: "projects built" },
       { num: "2",  label: "internships" },
       { num: "2",  label: "languages spoken" },
-      { num: "∞",  label: "curiosity level" },
+     {
+  num: "∞",
+  display: "∞",
+  label: "curiosity level",
+},
     ],
   },
 
@@ -87,6 +91,22 @@ const data = {
     relevant: "OS, Networks, DBMS, Algorithms, Data Structures",
     years: "2022 – 2026",
   },
+  experience: [
+    {
+      role: "Web Development Intern",
+      company: "Prodigy InfoTech",
+      duration: "Jun 2024 – July 2024",
+      description: "Built and maintained web applications using Javascript and React,learned basics of web design.",
+      tech: ["Responsive Design","Javascript","HTML/CSS"],
+    },
+    {
+      role: "AI and ML Internship",
+      company: "AICTE-IBM",
+      duration: "June 2025 – July 2025",
+      description: "Worked on backend APIs and database optimization. Gained hands-on experience with real-world software development workflows.",
+      tech: ["Python", "ML", "Jupyter Notebook"],
+    },
+  ],
   certifications: [
   {
     name: "WE Start Pre-Incubation Program",
