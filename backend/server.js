@@ -1,8 +1,8 @@
-import cors from "cors";
 const express = require("express");
 const cors = require("cors");
 const rateLimit = require("express-rate-limit");
 const path = require("path");
+
 const app = express();
 
 app.use(
@@ -17,7 +17,6 @@ app.use(express.json());
 const PORT = process.env.PORT || 5000;
 
 
-app.use(express.json());
 
 app.use(
   "/certificates",
