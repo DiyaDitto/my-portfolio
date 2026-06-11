@@ -1,8 +1,19 @@
+import cors from "cors";
 const express = require("express");
 const cors = require("cors");
 const rateLimit = require("express-rate-limit");
 const path = require("path");
 const app = express();
+app.use(cors(
+  {
+    origin: [
+      "https://my-portfolio-m0qa5tgh9-diya-dittos-projects.vercel.app"
+    ],
+    methods: ["GET", "POST"],
+    credentials: true
+  })
+);
+
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({ origin: ["http://localhost:3000", "http://localhost:5173"] }));
