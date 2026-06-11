@@ -6,7 +6,9 @@ export function usePortfolio() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("/api/portfolio")
+    const API = import.meta.env.VITE_API_URL;
+
+fetch(`${API}/api/portfolio`)
       .then((r) => {
         if (!r.ok) throw new Error("Failed to fetch portfolio data");
         return r.json();
