@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Particles         from "./Particles";
-import Spotlight         from "./Spotlight";
+import Spotlight         from "./SpotLight";
 import { useMagnetic }   from "../hooks/useMagnetic";
 
 const TYPING_LINES = ["building things", "that matter."];
