@@ -79,7 +79,7 @@ export default function App() {
       <Education education={data.education} />
        <Experience     experience={data.experience} />
       <Certifications certifications={data.certifications} />
-      <GitHubGraph    username="DiyaDitto" />
+      <GithubGraph    username="DiyaDitto" />
       <Contact       contact={data.contact} />
       <Footer    name={data.hero.name} />
       <BackToTop />
