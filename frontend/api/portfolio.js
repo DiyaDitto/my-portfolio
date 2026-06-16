@@ -97,7 +97,7 @@ const data = {
   contact: {
     email: "diyaditto84@gmail.com",
     github: "github.com/DiyaDitto",
-    linkedin: "in.linkedin.com/in/diya-ditto-368446257",
+    linkedin: "in.linkedin.com/in/diya-ditto",
   },
 };
 
